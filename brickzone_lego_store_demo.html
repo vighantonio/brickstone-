@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrickZone — Descoperă seturile LEGO</title>
+<style>
+:root{--red:#e31d2b;--ink:#171717;--muted:#666;--paper:#f5f5f3;--line:#e8e8e5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper)}
+a{color:inherit;text-decoration:none}.topbar{background:#171717;color:#fff;text-align:center;padding:9px 14px;font-size:12px;letter-spacing:.4px}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.nav{max-width:1180px;margin:auto;padding:16px 22px;display:flex;align-items:center;gap:24px}
+.logo{font-weight:1000;font-size:25px;letter-spacing:-1.4px;white-space:nowrap}.logo span{color:var(--red)}.navlinks{display:flex;gap:22px;font-size:14px;font-weight:700}.navlinks a:hover{color:var(--red)}.search{margin-left:auto;display:flex;gap:8px;align-items:center}.search input{width:205px;padding:11px 13px;border:1px solid #ddd;border-radius:10px;font-size:13px;outline:none}.search input:focus{border-color:#888}
+.hero{max-width:1180px;margin:24px auto 0;padding:0 22px}.hero-inner{background:#171717;color:white;border-radius:24px;overflow:hidden;min-height:355px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;position:relative}
+.hero-copy{padding:42px 46px;position:relative;z-index:1}.eyebrow{color:#ffcf32;font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(36px,5vw,62px);line-height:.98;letter-spacing:-2.5px;margin:16px 0}.hero p{color:#d5d5d5;line-height:1.6;max-width:490px;font-size:15px}.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:10px;padding:13px 17px;font-weight:800;font-size:13px;cursor:pointer;transition:transform .15s}.btn:hover{transform:translateY(-2px)}.btn-red{background:var(--red);color:#fff}.btn-white{background:#fff;color:#111}.hero-art{height:100%;min-height:320px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 55% 45%,#454545,#242424 54%,#171717 75%);position:relative}.hero-art:before{content:"";position:absolute;width:290px;height:190px;border-radius:50%;background:#e31d2b;filter:blur(65px);opacity:.5}.racecar{font-size:clamp(100px,16vw,185px);transform:rotate(-10deg);filter:drop-shadow(0 22px 15px #0008);position:relative}
+.wrap{max-width:1180px;margin:0 auto;padding:34px 22px 70px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:18px}.section-head h2{font-size:27px;letter-spacing:-.8px;margin:0 0 6px}.section-head p{margin:0;color:var(--muted);font-size:13px}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.filter{border:1px solid #ddd;background:#fff;border-radius:100px;padding:9px 14px;font-size:12px;font-weight:800;cursor:pointer}.filter.active,.filter:hover{background:#171717;color:#fff;border-color:#171717}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.product{background:#fff;border:1px solid var(--line);border-radius:17px;overflow:hidden;display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s}.product:hover{transform:translateY(-3px);box-shadow:0 12px 30px #0000000b}.visual{height:190px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.visual:after{content:"";position:absolute;width:180px;height:120px;border-radius:50%;background:#fff8;filter:blur(25px)}.visual .emoji{font-size:94px;position:relative;z-index:1;filter:drop-shadow(0 14px 10px #0002)}.visual .setno{position:absolute;left:14px;top:14px;background:#fffdf0e8;padding:6px 9px;border-radius:7px;font-size:10px;font-weight:900;z-index:2}.v-red{background:linear-gradient(135deg,#ffd4d5,#ffb8bb)}.v-blue{background:linear-gradient(135deg,#d7e8ff,#9fc7ff)}.v-yellow{background:linear-gradient(135deg,#fff0b7,#ffd84e)}.v-green{background:linear-gradient(135deg,#d8f5d9,#94df9a)}.v-purple{background:linear-gradient(135deg,#e9dcff,#c5a8ff)}.v-gray{background:linear-gradient(135deg,#e7e7e7,#bdbdbd)}
+.product-info{padding:17px;display:flex;flex-direction:column;flex:1}.tag{font-size:10px;color:var(--red);font-weight:900;text-transform:uppercase;letter-spacing:1.1px}.product h3{font-size:17px;line-height:1.25;margin:8px 0}.details{font-size:12px;color:var(--muted);margin:0 0 16px}.price-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto}.price{font-size:19px;font-weight:900}.small{font-size:10px;color:var(--muted);margin-top:8px}.product .btn{width:100%;margin-top:14px}.empty{display:none;padding:35px;text-align:center;color:var(--muted);background:#fff;border-radius:14px}
+.notice{margin-top:24px;padding:18px 20px;border:1px solid #e7dfc7;background:#fff9e8;border-radius:13px;color:#62552f;font-size:12px;line-height:1.6}.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:16px}.cat{padding:19px;background:#fff;border:1px solid var(--line);border-radius:14px;font-weight:900}.cat span{display:block;font-size:25px;margin-bottom:12px}.cat small{display:block;color:var(--muted);font-weight:400;margin-top:6px}.cat:hover{border-color:#aaa}
+footer{background:#171717;color:#fff;padding:32px 22px}.foot{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}.foot p{font-size:12px;line-height:1.7;color:#c7c7c7;max-width:650px}.foot a{color:#fff;text-decoration:underline}
+@media(max-width:800px){.nav{flex-wrap:wrap;gap:14px}.navlinks{order:3;width:100%;overflow:auto}.search{margin-left:auto}.search input{width:150px}.hero-inner{grid-template-columns:1fr}.hero-copy{padding:32px 26px 10px}.hero-art{min-height:180px}.racecar{font-size:120px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.categories{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.visual{height:180px}.section-head{align-items:start;flex-direction:column}.search{width:100%;margin:0}.search input{width:100%}.hero h1{font-size:43px}.hero-copy{padding:28px 22px 8px}}
+</style>
+</head>
+<body>
+<div class="topbar">IDEI DE CONSTRUCȚIE • MAȘINI • TEHNIC • SETURI PENTRU COLECȚIONARI</div>
+<header><nav class="nav">
+<a class="logo" href="#"><span>BRICK</span>ZONE.</a>
+<div class="navlinks"><a href="#produse">Seturi populare</a><a href="#categorii">Categorii</a><a href="#despre">Despre site</a></div>
+<div class="search"><input id="search" type="search" placeholder="Caută seturi LEGO..." aria-label="Caută seturi"></div>
+</nav></header>
+<section class="hero"><div class="hero-inner">
+<div class="hero-copy"><div class="eyebrow">Găsește următoarea construcție</div><h1>Construiește.<br>Joacă-te.<br><span style="color:#ffcf32">Repetă.</span></h1>
+<p>Descoperă seturi de mașini, modele Technic și construcții care merită locul pe raft. Alege un set și continuă comanda pe magazinul oficial LEGO.</p>
+<a class="btn btn-red" href="#produse">Explorează seturile&nbsp; ↓</a></div>
+<div class="hero-art"><div class="racecar" aria-label="mașină de curse">🏎️</div></div>
+</div></section>
+<main class="wrap">
+<section id="produse">
+<div class="section-head"><div><h2>Seturi recomandate</h2><p>Catalog demonstrativ — verifică prețul și disponibilitatea pe LEGO.com.</p></div></div>
+<div class="filters" role="group" aria-label="Filtre categorii">
+<button class="filter active" data-filter="toate">Toate</button><button class="filter" data-filter="technic">Technic</button><button class="filter" data-filter="masini">Mașini</button><button class="filter" data-filter="spatiu">Spațiu & știință</button><button class="filter" data-filter="city">City</button>
+</div>
+<div class="grid" id="grid">
+<article class="product" data-category="technic masini" data-name="bmw m4 gt3 evo masina de curse technic">
+<div class="visual v-red"><span class="setno">42226 · TECHNIC</span><span class="emoji">🏎️</span></div>
+<div class="product-info"><div class="tag">Pentru pasionații de curse</div><h3>Mașina de curse BMW M4 GT3 EVO</h3><p class="details">747 piese · 11+ ani · LEGO Technic</p><div class="price-row"><span class="price">349,99 lei*</span></div><a class="btn btn-red" href="https://www.lego.com/ro-ro/product/bmw-m4-gt3-evo-race-car-42226" target="_blank" rel="noopener noreferrer">Vezi pe LEGO oficial ↗</a><div class="small">*Preț afișat la verificarea catalogului; poate fi modificat.</div></div></article>
+<article class="product" data-category="technic masini" data-name="aston martin valkyrie technic masina">
+<div class="visual v-blue"><span class="setno">TECHNIC</span><span class="emoji">🚘</span></div>
+<div class="product-info"><div class="tag">Supermașini</div><h3>Aston Martin Valkyrie</h3><p class="details">Model LEGO Technic · verifică detaliile pe site-ul oficial</p><div class="price-row"><span class="price">Vezi prețul</span></div><a class="btn btn-red" href="https://www.lego.com/ro-ro/themes/technic" target="_blank" rel="noopener noreferrer">Caută pe LEGO oficial ↗</a></div></article>
+<article class="product" data-category="technic masini" data-name="ferrari formula 1 technic masina">
+<div class="visual v-yellow"><span class="setno">TECHNIC</span><span class="emoji">🏁</span></div>
+<div class="product-info"><div class="tag">Viteză și inginerie</div><h3>Mașini de curse LEGO Technic</h3><p class="details">Modele cu detalii și mecanisme realiste</p><div class="price-row"><span class="price">Vezi colecția</span></div><a class="btn btn-red" href="https://www.lego.com/ro-ro/themes/technic" target="_blank" rel="noopener noreferrer">Vezi colecția oficială ↗</a></div></article>
+<article class="product" data-category="spatiu technic" data-name="pamant luna orbita spatiu technic">
+<div class="visual v-purple"><span class="setno">TECHNIC</span><span class="emoji">🌍</span></div>
+<div class="product-info"><div class="tag">Știință & descoperire</div><h3>Pământul și orbita Lunii</h3><p class="details">Un model pentru curioșii de spațiu</p><div class="price-row"><span class="price">Vezi colecția</span></div><a class="btn btn-red" href="https://www.lego.com/ro-ro/themes/technic" target="_blank" rel="noopener noreferrer">Caută pe LEGO oficial ↗</a></div></article>
+<article class="product" data-category="city" data-name="lego city vehicule oras">
+<div class="visual v-green"><span class="setno">LEGO CITY</span><span class="emoji">🚒</span></div>
+<div class="product-info"><div class="tag">Joacă de rol</div><h3>Vehicule și aventuri LEGO City</h3><p class="details">Mașini, clădiri și scenarii de joacă</p><div class="price-row"><span class="price">Vezi colecția</span></div><a class="btn btn-red" href="https://www.lego.com/ro-ro/themes/city" target="_blank" rel="noopener noreferrer">Vezi LEGO City ↗</a></div></article>
+<article class="product" data-category="masini" data-name="speed champions masini sport">
+<div class="visual v-gray"><span class="setno">SPEED CHAMPIONS</span><span class="emoji">🚗</span></div>
+<div class="product-info"><div class="tag">Mașini de colecție</div><h3>LEGO Speed Champions</h3><p class="details">Modele compacte inspirate de mașini reale</p><div class="price-row"><span class="price">Vezi colecția</span></div><a class="btn btn-red" href="https://www.lego.com/ro-ro/themes/speed-champions" target="_blank" rel="noopener noreferrer">Vezi colecția oficială ↗</a></div></article>
+</div>
+<div class="empty" id="empty">Nu am găsit seturi pentru căutarea asta. Încearcă alt cuvânt.</div>
+</section>
+<section id="categorii" style="margin-top:45px"><div class="section-head"><div><h2>Alege universul tău</h2><p>Intră direct în categoria preferată.</p></div></div>
+<div class="categories">
+<a class="cat" href="https://www.lego.com/ro-ro/themes/technic" target="_blank" rel="noopener noreferrer"><span>⚙️</span>Technic<small>Mecanisme și mașini</small></a>
+<a class="cat" href="https://www.lego.com/ro-ro/themes/speed-champions" target="_blank" rel="noopener noreferrer"><span>🏎️</span>Speed Champions<small>Mașini sport</small></a>
+<a class="cat" href="https://www.lego.com/ro-ro/themes/city" target="_blank" rel="noopener noreferrer"><span>🏙️</span>LEGO City<small>Orașe și aventuri</small></a>
+<a class="cat" href="https://www.lego.com/ro-ro/themes" target="_blank" rel="noopener noreferrer"><span>🧱</span>Toate temele<small>Descoperă mai multe seturi</small></a>
+</div></section>
+<section class="notice" id="despre"><strong>Important despre comenzi:</strong> acest site este un catalog demonstrativ, nu un magazin oficial LEGO. Butoanele deschid pagini LEGO pentru a verifica produsele și a cumpăra direct de acolo. Nu se trimit comenzi, nu se încasează bani și nu se colectează date personale pe acest site. Prețurile și stocurile se pot schimba. Site-ul nu este sponsorizat sau aprobat de LEGO.</section>
+</main>
+<footer><div class="foot"><div><div class="logo"><span>BRICK</span>ZONE.</div><p>Un concept de site pentru fanii construcțiilor LEGO. Înainte de publicare, schimbă numele dacă dorești, verifică toate linkurile și cere ajutorul unui adult pentru orice program de afiliere sau activitate comercială.</p></div><div><strong>Linkuri utile</strong><p><a href="https://www.lego.com/ro-ro" target="_blank" rel="noopener noreferrer">Magazinul oficial LEGO România</a><br><a href="https://www.lego.com/ro-ro/themes" target="_blank" rel="noopener noreferrer">Teme LEGO</a></p></div></div></footer>
+<script>
+const search=document.getElementById('search'), cards=[...document.querySelectorAll('.product')], filters=[...document.querySelectorAll('.filter')], empty=document.getElementById('empty');let active='toate';
+function update(){const q=search.value.toLocaleLowerCase('ro');let visible=0;cards.forEach(c=>{const cat=c.dataset.category||'',name=c.dataset.name||'';const okCat=active==='toate'||cat.split(' ').includes(active);const okQ=(name+' '+c.innerText).toLocaleLowerCase('ro').includes(q);c.style.display=okCat&&okQ?'flex':'none';if(okCat&&okQ)visible++});empty.style.display=visible?'none':'block'}
+search.addEventListener('input',update);filters.forEach(b=>b.addEventListener('click',()=>{active=b.dataset.filter;filters.forEach(x=>x.classList.toggle('active',x===b));update()}));
+</script>
+</body></html>
